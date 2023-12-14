@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Sudoku</title>
+<meta id="my-data" data-name="{{is_solved}}">
+<script src="static/javascript/play.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+<body id="body" class="" onload="changeTheme(); changeMode('normal'); createArray(); checkAlert(); startTimer()">
+    <h1>Sudoku</h1>
+    <form action="/play" method="POST" onsubmit="return validateForm()">
+        <div id="content">
+            <div id="outsideoption" class="inline">
+                <div id="optioncontainer">
+                    <h4>Options</h4>
+
+                    <div id="optionicons">
+                        <div id="homesquare" onclick="location.href='/'"></div>
+                        <div id="shiftIndication"></div>
+                        <div id="timer">00:00</div>
+                    </div><br>
+
+                
+
+                    <div onclick="undo()" class="optiondivs">Undo</div>
+
+                    
+                </div>
+            </div>
+
+            <div id="outsidegrid" class="inline">
+                <div id="instructionsdisplay">
+                    <div class="header">How To Play Sudoku</div>
+                    <p>The grid is divided into nine blocks, each containing nine squares. Each of the nine blocks has to contain all the numbers 1-9 within its squares. Each number can only appear once in a row, column, or block.</p>
+
+                    <div class="header">Features</div>
+
+                    <ul>
+                        <li>Change Theme: Choose between dark, tan, light, and retro themes</li>
+                        <li>Click the home icon to return to the menu page</li>
+                        <li>Toggling Options</li>
+                        <ul>
+                            <li>Auto delete pencilmarks when inputting a normal number</li>
+                            <li>Highlight all of the same normal/pencilmarked numbers</li>
+                            <li>Highlight the respective row, column, and block</li>
+                        </ul>
+                        <li>Input Options</li>
+                        <ul>
+                            <li>Press keyboard numbers or click numbers on the keypad</li>
+                            <li>Pencilmarks mode will input notes in the cells (double input the same number to delete)</li>
+                            <li>Color different cells on the grid (center color is the default) by clicking the color or using the corresponding keyboard number</li>
+                            <li>"Auto Fill Pencilmarks" will automatically fill pencilmarks in all cells</li>
+                        </ul>
+                        <li>Multiple Selections</li>
+                        <ul>
+                            <li>Hold <i>Shift</i> and use arrow keys or click different cells</li>
+                            <li>Drag the cursor around</li>
+                            <li><i>"Control A"</i> to select all cells</li>
+                            <li>To unselect, (1) click on any cell, or (2) press <i>Escape</i></li>
+                            <li>The indicator next to the home icon will turn on if there are multiple selections on the grid</li>
+                        </ul>
+                        <li>Shortcuts</li>
+                        <ul>
+                            <li>Click "Undo" or press <i>"Control Z"</i> to undo previous changes</li>
+                            <li>Press <i>Space</i> to switch between input modes</li>
+                        </ul>
+                    </ul>
+                </div>
+
+                <div id="checkoverlay"></div>
+
+                <div id="aboutdisplay">
+                    <div class="header">About Us</div>
+                    <div style="height: 6px;"></div>
+
+                </div>
+
+                <div id="grid-container">
+                    {% for i in range(9) %}
+                        {% for j in range(9) %}
+                            {% if play_array == None %}
+                                {% if input_array[i][j] != 0 %}
+                                <div class="grid-item">
+                                    <input id="{{ i*9 + j }}" name="{{ i*9 + j }}" type="text" maxlength="1" class="readonly" min="1" value="{{ input_array[i][j] }}" autocomplete="off" onfocus="selectFocus(this.id)" onmouseover="selectDrag(this.id)" onclick="selectClick(this.id)" readonly>
+                                </div>
+                                {% else %}
+                                <div class="grid-item">
+                                    <input id="{{ i*9 + j }}" name="{{ i*9 + j }}" type="text" maxLength="1" class="" autocomplete="off" onfocus="selectFocus(this.id)" onclick="selectClick(this.id)" onmouseover="selectDrag(this.id)" readonly>
+                                </div>
+                                {% endif %}
+                            {% else %}
+                                {% if input_array[i][j] != 0 %}
+                                <div class="grid-item">
+                                    <input id="{{ i*9 + j }}" name="{{ i*9 + j }}" type="text" class="readonly" maxlength="1" min="1" value="{{ input_array[i][j] }}" autocomplete="off" onfocus="selectFocus(this.id)" onmouseover="selectDrag(this.id)" onclick="selectClick(this.id)" readonly>
+                                </div>
+                                {% elif check_array[i][j] %}
+                                <div class="grid-item">
+                                    <input id="{{ i*9 + j }}" name="{{ i*9 + j }}" type="text" maxLength="1" class="txt-input" value="{{ play_array[i][j] }}" autocomplete="off" onfocus="selectFocus(this.id)" onclick="selectClick(this.id)" onmouseover="selectDrag(this.id)" readonly>
+                                </div>
+                                {% else %}
+                                <div class="grid-item">
+                                    <input id="{{ i*9 + j }}" name="{{ i*9 + j }}" type="text" maxLength="1" class="txt-input errors" value="{{ play_array[i][j] }}" autocomplete="off" onfocus="selectFocus(this.id)" onclick="selectClick(this.id)" onmouseover="selectDrag(this.id)" readonly>
+                                </div>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+
+                <div class="allbuttonscontainer">
+                    <div class="buttoncontainers">
+                        <button id="solve" type="submit" class="buttons">Check</button>
+                    </div>
+
+                    <div class="buttoncontainers">
+                        <button id="clear" onclick="restart()" type="button" class="buttons">Restart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="outsidemode" class="inline">
+                <div id="modecontainer">
+                    <h4>Modes</h4>
+
+                    <div onclick="changeMode(this.id)" id="normal" value="normal" class="modedivs">Normal</div>
+
+                    <div onclick="changeMode(this.id)" id="pencilmarks" value="pencilmarks" class="modedivs">Pencilmarks</div>
+
+                    <div onclick="changeMode(this.id)" id="colors" value="colors" class="modedivs">Colors</div>
+
+                    <div id="tablecontainer">
+                        <table>
+                            <tr>
+                                <td><button class="colors" onclick="tableInput('1')" type="button">1</button></td>
+                                <td><button class="colors" onclick="tableInput('2')" type="button">2</button></td>
+                                <td><button class="colors" onclick="tableInput('3')" type="button">3</button></td>
+                            </tr>
+                            <tr>
+                                <td><button class="colors" onclick="tableInput('4')" type="button">4</button></td>
+                                <td><button class="colors" onclick="tableInput('5')" type="button">5</button></td>
+                                <td><button class="colors" onclick="tableInput('6')" type="button">6</button></td>
+                            </tr>
+                            <tr>
+                                <td><button class="colors" onclick="tableInput('7')" type="button">7</button></td>
+                                <td><button class="colors" onclick="tableInput('8')" type="button">8</button></td>
+                                <td><button class="colors" onclick="tableInput('9')" type="button">9</button></td>
+                            </tr>
+                        </table>
+                    </div>
+
+    
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+{% endblock %}div
