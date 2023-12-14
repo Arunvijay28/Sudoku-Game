@@ -40,7 +40,7 @@ As avid fans of solving Sudokus, we set out on this multi-week project to learn 
 ## Website Walkthrough
 
 ### Themes
-<img src="/static/css/images/TanTheme.png" width="25%">
+<img src="/static/css/images/TanTheme.png" width="50%">
 
 ### Menu
 
