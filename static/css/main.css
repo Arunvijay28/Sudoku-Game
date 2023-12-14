@@ -1,0 +1,494 @@
+/* Color Variables */
+:root {
+    /* Tan Color Theme - Set as the default theme */
+    --primaryColor: #d2b48c;
+    --itemBackgroun: #f6f0e8;
+    --textColor: #a87b00;
+    --readOnlyColor: #533e2d;
+    --tableColor: #ac8048;
+    --headerColor: #ffffff;
+    --tableItemBackground: #f6f0e8;
+    --buttonBackground: #f6f0e8;
+    --buttonText: #a87b00;
+    --shiftColor: #fce17a;
+    --messageTextColor: #533e2d;
+    --focusText: #f6f0e8;
+    --highlightOpacity: brightness(90%);
+    --shiftIndication: #533e2d;
+    --linkColor: white;
+}
+
+/* Document CSS */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+body {
+    background-color: var(--primaryColor);
+    margin: 0;
+    padding: 0;
+    height: 50%;
+    opacity: 0;
+    user-select: none;
+}
+body.all-loaded {
+    opacity: 1;
+}
+h1, h4 {
+    text-align: center;
+    color: var(--headerColor);
+    font-family: 'Roboto', sans-serif;
+    font-size: 45px;
+    margin: 6px 0px 6px 0px;
+    user-select: none;
+}
+h4 {
+    font-size: 20px;
+    text-decoration: underline;
+}
+div#content {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+div.inline {
+    display: inline-block;
+}
+
+/* Main Div Containers */
+div#outsideoption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    height: 480px;
+    float: left;
+    top: 50%;
+    position: relative;
+    width: 242px;
+}
+div#outsidegrid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    float: left;
+}
+div#outsidemode {
+    display: flex;
+    vertical-align: middle;
+    float: left;
+    position: relative;
+    margin-left: 20px;
+    margin-top: 0px;
+}
+
+/* Grid CSS */
+div#grid-container, div#instructionsdisplay, div#aboutdisplay, div#checkoverlay {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto;
+    margin: 0;
+    left: 0%;
+    justify-content: center;
+    padding: 0;
+}
+div.grid-item {
+    background-color: var(--itemBackground);
+    border: 1px solid var(--primaryColor);
+    padding: 0;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+    height: 50px;
+    width: 50px;
+}
+
+/* Instructions and About Overlays */
+div#instructionsdisplay, div#aboutdisplay, div#menuinstructionsdisplay, div#menuaboutdisplay, div#checkoverlay {
+    display: none;
+    width: 460px;
+    height: 456px;
+    left: 0%;
+    margin: auto;
+    border: 1px solid white;
+    font-size: 13.5px;
+    padding: 10px;
+    color: var(--messageTextColor);
+    text-align: left;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+div#menuinstructionsdisplay, div#menuaboutdisplay {
+    width: 403px;
+    height: 403px;
+    margin: 0;
+    left: 0%;
+    justify-content: center;
+    padding: 10px;
+}
+div.header {
+    font-weight: bold;
+    text-decoration: underline;
+    margin: 0px;
+}
+ul {
+    padding-left: 26px;
+}
+a, a:visited {
+    color: var(--linkColor)
+}
+
+/* Column Borders CSS */
+div#grid-container div.grid-item:nth-child(n):nth-last-child(9n){
+    border-left: 5px var(--primaryColor) solid;
+}
+div#grid-container div.grid-item:nth-child(n):nth-last-child(9n+6){
+    border-left: 4px var(--primaryColor)solid;
+}
+div#grid-container div.grid-item:nth-child(n):nth-last-child(9n+3){
+    border-left: 4px var(--primaryColor) solid;
+}
+div#grid-container div.grid-item:nth-child(n):nth-last-child(9n+1){
+    border-right: 5px var(--primaryColor) solid;
+}
+
+/* Row Borders CSS */
+div#grid-container div.grid-item:nth-child(n):nth-last-child(n+73){
+    border-top: 5px var(--primaryColor) solid;
+}
+div#grid-container div.grid-item:nth-child(n+28):nth-last-child(n+46){
+    border-top: 4px var(--primaryColor) solid;
+}
+div#grid-container div.grid-item:nth-child(n+55):nth-last-child(n+19){
+    border-top: 4px var(--primaryColor) solid;
+}
+div#grid-container div.grid-item:nth-child(n+73):nth-last-child(n){
+    border-bottom: 5px var(--primaryColor) solid;
+}
+
+/* Inputs CSS */
+input {
+    cursor: default;
+}
+input.txt-input {
+    font-size: 25px;
+    color: transparent;
+    text-shadow: 0 0 0 var(--textColor);
+}
+input.readonly {
+    font-size: 25px;
+    color: transparent;
+    text-shadow: 0 0 0 var(--readOnlyColor);
+}
+input.pm-input {
+    font-size: 10px;
+    color: transparent;
+    text-shadow: 0 0 0 var(--textColor);
+}
+input.txt-input, input.pm-input, input.readonly {
+    height: 50px;
+    width: 50px; 
+    padding: 0;
+    border: 0;
+    background-color: var(--itemBackground);
+    outline: none;
+    font-weight: bold;
+    text-align: center;
+}
+input.errors {
+    background-color: rgba(255,0,0,0.4);
+    height: 50px;
+    width: 50px; 
+    padding: 0;
+    border: 0;
+    outline: none;
+    font-weight: bold;
+    text-align: center;
+}
+input:focus {
+    outline: 3px var(--textColor) solid;
+}
+input::selection {
+    background: transparent;
+}
+
+/* Button Containers CSS */
+div.buttoncontainers {
+    display: inline-block;
+}
+div.allbuttonscontainer {
+    justify-content: center;
+    text-align: center;
+}
+
+/* Option/Mode Divs and Buttons CSS */
+button.buttons, button.menubutton, button.playbutton, button.difficultybutton, div.optiondivs, div.modedivs {
+    background-color: var(--buttonBackground);
+    color: var(--buttonText);
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    overflow: hidden;
+    margin: 3px;
+    width: 200px;
+    height: 45px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    cursor: pointer;
+}
+
+div.optiondivs, div.modedivs, div#shiftIndication, div#homesquare {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    width: 164px;
+    height: 49px;
+    margin: 8px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    user-select: none;
+    border: 3px solid var(--primaryColor);
+    overflow: hidden;
+}
+
+button.buttons:focus, button.menubutton:focus, div.optiondivs:focus, div.modedivs:focus, button.playbutton:focus, button.difficultybutton:focus {
+    outline: none;
+}
+
+div.modefocus, div.focusdivs {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    background-color: var(--primaryColor);
+    color: var(--focusText);
+    border: 3px solid var(--focusText);
+    border-radius: 25px;
+    font-size: 18px;
+    width: 164px;
+    height: 49px;
+    margin: 8px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    outline: none;
+    overflow: hidden;
+    user-select: none;
+    cursor: pointer;
+}
+div.modefocus {
+    width: 200px;
+    height: 45px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+div.modedivs {
+    width: 200px;
+    height: 45px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+#instructions {
+    margin-top: 0px;
+}
+
+/* Color Table CSS */
+table {
+    margin: auto;
+    text-align: center;
+    padding: 5px;
+    background-color: var(--tableColor);
+    /* margin-bottom: 20px; */
+    border-radius: 15px;
+    height: 175px;
+}
+button.colors {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    border: 2px solid var(--primaryColor);
+    box-shadow: 1px 2px var(--primaryColor);
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: var(--readOnlyColor);
+    background-color: var(--tableItemBackground);
+    cursor: pointer;
+    outline: none;
+}
+div#tablecontainer {
+    margin: 5px;
+}
+
+/* Themes and Theme Button CSS */
+div#themebutton {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    z-index: 4;
+}
+div#themescontainer {
+    display: flex;
+}
+div.themes {
+    flex: 1; 
+    width: 41;
+    height: 49px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    user-select: none;
+}
+div#dark {
+    background: rgb(27,38,44);
+    background: linear-gradient(180deg, rgba(27,38,44,1) 0%, rgba(34,104,151,1) 50%, rgba(187,225,250,1) 100%);
+}
+div#tan {
+    background: rgb(168,123,0);
+    background: linear-gradient(180deg, rgba(168,123,0,1) 0%, rgba(210,180,140,1) 30%, rgba(246,240,232,1) 100%);
+}
+div#light {
+    background: rgb(77,180,146);
+    background: linear-gradient(180deg, rgba(77,180,146,1) 0%, rgba(210,255,240,1) 75%, rgba(241,235,235,1) 100%);
+}
+div#retro {
+    background: rgb(17,31,77);
+    background: linear-gradient(180deg, rgba(17,31,77,1) 0%, rgba(65,44,119,1) 30%, rgba(228,58,25,1) 60%, rgba(243,236,231,1) 100%);
+}
+
+/* Menu CSS */
+button.menubutton {
+    width: 300px;
+    margin: 10px;
+}
+button.playbutton {
+    width: 175px;
+    margin: 10px;
+}
+button.difficultybutton {
+    width: 88px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 8px;
+}
+div#playcontainer {
+    margin-top: 0px;
+}
+div#playimage {
+    display: block;
+    background-image: url(/static/css/images/tan_play.png);
+    width: 425px;
+    height: 425px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    cursor: pointer;
+}
+div#solveimage {
+    display: block;
+    background-image: url(/static/css/images/tan_solve.png);
+    width: 425px;
+    height: 425px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    cursor: pointer;
+}
+div#outsideplay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    float: left;
+    max-width: 500px;
+    max-height: 550px;
+}
+div#outsidesolve {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    float: left;
+    max-width: 500px;
+    max-height: 550px;
+}
+div#outsidemenuoption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    float: left;
+    padding: 20px;
+    height: 480px;
+}
+
+/* Icons CSS */
+div#shiftIndication {
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    width: 15px;
+    height: 15px;
+    opacity: 1;
+    border: 2px solid var(--shiftIndication);
+    border-radius: 50%;
+    margin-bottom: 4px;
+}
+div#homesquare {
+    display: inline-block;
+    background-image: url(/static/css/images/homeTan.png);
+    width: 25px;
+    height: 25px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    cursor: pointer;
+    border: none;
+}
+div#optionicons {
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+div#timer {
+    color: var(--shiftIndication);
+    font-size: 20px;
+    margin-top: 6px;
+}
+
+/* Check Overlay */
+div#checkoverlay {
+    font-size: 35px;
+    text-align: center;
+}
+div#close {
+    margin: auto;
+    margin-top: 8%;
+}
+div#checkcenter {
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    margin-top: 30%;
+}
