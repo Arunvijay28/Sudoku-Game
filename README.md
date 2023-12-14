@@ -27,32 +27,20 @@ This project is a multi-dimensional Sudoku web application, which runs with a Fl
 <a id="about"></a>
 
 ## About Us
-This website was co-created and designed from scratch by <b>Ayush Garg</b> and <b>Suchit Sharma</b> in the summer of 2020.
+
 
 As avid fans of solving Sudokus, we set out on this multi-week project to learn about some new technologies and frameworks, get a glimpse into unifying backend and frontend code, and create a one-stop-shop for all things Sudoku!
 
-<p>Check out some of our other projects on GitHub: </p>
-<b><p><span style="margin-right: 75px;">Ayush Garg: <a href="https://github.com/ayushgarg-ag" target="_blank">GitHub</a></span></p>
-<p>Suchit Sharma: <a href="https://github.com/ssharma919" target="_blank">GitHub</a></p></b>
 
-
-<p>Learn more about us on our Linkedin pages: </p>
-<b><p><span style="margin-right: 66px;">Ayush Garg: <a href="https://www.linkedin.com/in/ayush-garg-ag/" target="_blank">LinkedIn</a></span></p>
-
-<p>Suchit Sharma: <a href="https://www.linkedin.com/in/suchit-sharma-988247155/" target="_blank">LinkedIn</a></p></b>
 
 <p>Having encountered many interesting features across Sudoku mobile and web applications, we sought to combine all of them into one place for the enjoyment of friends and family, as well as any and all Sudoku lovers! We encourage you to give it a try!</p>
-
-For any questions, reporting of bugs, or requests for additional features, email us at 
-agss.projects@gmail.com.
 
 <a id="walkthrough"></a>
 
 ## Website Walkthrough
 
 ### Themes
-
-<img src="/static/css/images/DarkTheme.png" width="25%"><img src="/static/css/images/TanTheme.png" width="25%"><img src="/static/css/images/LightTheme.png" width="25%"><img src="/static/css/images/RetroTheme.png" width="25%">
+<img src="/static/css/images/TanTheme.png" width="25%">
 
 ### Menu
 
@@ -249,5 +237,3 @@ This is the main CSS document that is utilized by all of the HTML pages. The ini
 
 ## Credits
 All Sudokus inside the `/sudokus` folder were generated from https://qqwing.com/generate.html.
-
-This application is hosted by Heroku.
